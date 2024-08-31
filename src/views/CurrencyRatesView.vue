@@ -9,13 +9,14 @@ import Card from "../UI/Card.vue";
 const currenciesStore = useCurrenciesStore();
 
 const showData = computed(() => {
-  const data: { [key: string]: number } = { [currenciesStore.mainCurrency]: 1 };
+  const data: { [key: string]: string | number } = { [currenciesStore.mainCurrency]: "1" };
 
   currencyOptions.forEach((c) => {
     if (c === currenciesStore.mainCurrency) return; //Main already added in the first order
     const key = `${currenciesStore.mainCurrency}-${c}`;
     const value = currenciesStore.currencyRates[key];
-    data[c] = value;
+    const rounded = Number.isInteger(value) ? value : value?.toFixed(2)
+    data[c] = rounded;
   });
 
   return data;
