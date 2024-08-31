@@ -28,7 +28,7 @@ onMounted(currenciesStore.fetchCurrencies); //fetch fresh data on each mount
   <Card title="Currency rates">
     <DataTable :value="[showData]">
       <Column
-        v-for="(val, key) in showData"
+        v-for="(_, key) in showData"
         :field="key"
         :header="String(key).toUpperCase()"
       ></Column>
